@@ -1,13 +1,16 @@
 #include <iostream>
-#include <conio.h>
+
 using namespace std;
 bool gameover;
 const int width=20;
 const int height=20;
-int x,y,fruitX,fruitY,score; /* head position,fruit position, score */
-enum edirection{STOP=0,LEFT, RIGHT, UP, DOWN};
+/* head position,fruit position, score */
+int x,y,fruitX,fruitY,score; 
+enum edirection {STOP=0,LEFT, RIGHT, UP, DOWN};
 edirection dir; /* holds direction of snake*/
-void setup(){
+
+void setup()
+{
 gameover=false;
 dir=STOP; /*snake will not move till we start moving it*/
 x=width/2;
@@ -16,11 +19,16 @@ fruitX= rand()%width;
 fruitY= rand()%height;
 score=0;
 }
-void draw(){      
+
+void draw()
+{      
     /* here we draw a map*/
-    system("cls");
-    for(int i=0; i<width+2; i++) /*top wall*/
+    system("clrscr");
+
+    for(int i=0; i<width+2; i++)
+    {
         cout<<"#";
+    } /*top wall*/
     cout<<endl;
 
     /*print map*/
@@ -40,20 +48,23 @@ void draw(){
                cout<<"#";
             
             }
-        cout<<endl;
-                
+        cout<<endl;   
         }
 
-    for(int i=0; i<width+2; i++) /*bottom wall*/
+    for(int i=0; i<width+2; i++)
+    { /*bottom wall*/
         cout<<"#";
-    cout<<endl;
-    cout<<"Score"<<score;
-      
+        cout<<endl;
+        cout<<"Score"<<score;
+    }
 }
-void input(){
-      if(_kbhit()){
-         switch(_getch())
-         {
+
+void input()
+{
+    if(1)
+    {
+        switch('a')
+        {
             case 'a':
                 dir=LEFT;
                 break;
@@ -74,10 +85,13 @@ void input(){
                 gameover=true;
                 break;
         }
-        }    
-        }
-void logic(){
-    switch(dir){
+    }    
+}
+
+void logic()
+{
+    switch(dir)
+    {
         case LEFT:
              x--;
              break;
@@ -94,13 +108,19 @@ void logic(){
             break;
     }
     if(x>width || x<0 || y>height || y<0)
-}       gameover=true;
+    {
+        gameover=true;
+    }    
     if (x==fruitX && y==fruitY)
+    {
        score += 10;
        fruitX= rand()%width;
        fruitY= rand()%height;
+    }
+}
 
-int main(){
+int main()
+{
     setup();
     while (!gameover)
     { 
@@ -108,7 +128,5 @@ int main(){
         input();
         logic();
 
-     }
-    return 0;
-    
+     }    
 }
