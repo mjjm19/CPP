@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+int main()
+{
+  int guess, tries=0, num;
+  srand(time(NULL)); 
+  num=rand()%11;
+  std::cout<<"Guess the number.\n";
+
+  do
+  {
+    std::cout<< "Enter a number between 1 and 10: ";
+    std::cin>>guess;
+
+    if(guess < num)
+    {
+        std::cout<<guess<<" is too low. Try again :(\n";
+        tries++;
+        std::cout<<"Number of tries till now is: "<<tries;
+        std::cout<<"\n";
+    }
+    
+    else if(guess > num)
+    {
+        std::cout<<guess<<" is too high.Try again :(\n";
+        tries++;
+        std::cout<<"Number of tries till now is: "<<tries;
+        std::cout<<"\n";
+
+    }
+
+    else
+    {
+        std::cout<<"YOU ARE RIGHT!";
+        //tries++;//
+        std::cout<<"Total number of tries: "<<tries;
+    }
+  } while (guess!=num);
+  return 0;
+  
+}          
